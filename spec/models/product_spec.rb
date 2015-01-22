@@ -14,6 +14,14 @@ describe Product do
       end
     end
 
+    describe '#price' do
+      let(:product) { build(:product, price: "a") }
+
+      it 'must be a number' do
+        expect(product).to_not be_valid
+      end
+    end
+
     describe '#average_rating' do
       let(:user)    { create(:user) }
       let(:product) { create(:product) }
