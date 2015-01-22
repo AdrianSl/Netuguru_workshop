@@ -52,8 +52,7 @@ class ProductsController < ApplicationController
   end
 
   def correct_user
-    @product = current_user.products.find_by(id: product)
-    if @product.nil?
+    unless product.user == current_user
       flash[:error] = "You are not allowed to edit this product."
       redirect_to category_product_url(category, product)
     end
