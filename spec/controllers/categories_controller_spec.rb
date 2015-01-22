@@ -23,7 +23,7 @@ describe CategoriesController do
     describe 'GET new' do
       it 'redirects user to the login page' do
         get :new, {}, valid_session
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to(root_url)
       end
     end
 
@@ -31,14 +31,14 @@ describe CategoriesController do
       it 'redirects user to the login page' do
         category = Category.create! valid_attributes
         get :edit, { id: category.to_param }, valid_session
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to(root_url)
       end
     end
 
     describe 'POST create' do
       it 'redirects user to the login page' do
         post :create, {category: valid_attributes}, valid_session
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to(root_url)
       end
     end
 
@@ -46,7 +46,7 @@ describe CategoriesController do
       it 'redirect user to the login page' do
         category = Category.create! valid_attributes
         put :update, {:id => category.to_param, :category => { 'name' => 'MyString'}}, valid_session
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to(root_url)
       end
     end
   end
