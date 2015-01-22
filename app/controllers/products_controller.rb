@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  before_action :logged_in_user, only: [:new, :edit, :create, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  # before_action :authenticate_user!, only: [:destroy]
   expose(:category)
   expose(:products)
   expose(:product)
@@ -18,7 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    self.product = Product.new(product_params)
+    self.product = current_user.products.build(product_params)
 
     if product.save
       category.products << product
@@ -46,5 +49,13 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:title, :description, :price, :category_id)
+  end
+
+  def correct_user
+    @product = current_user.products.find_by(id: product)
+    if @product.nil?
+      flash[:error] = "You are not allowed to edit this product."
+      redirect_to category_product_url(category, product)
+    end
   end
 end
