@@ -41,6 +41,7 @@ class CategoriesController < ApplicationController
     redirect_to categories_url, notice: 'Category was successfully destroyed.'
   end
 
+
   private
     def category_params
       params.require(:category).permit(:name)
