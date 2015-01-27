@@ -11,6 +11,6 @@
     = f.label 'Rating'
     - (1..5).each do |i|
       %label.radio-inline
-        = f.radio_button :rating, i, 
+        = f.radio_button :rating, i
         = "#{i}"
   = f.submit 'Save', class: 'btn btn-default'
