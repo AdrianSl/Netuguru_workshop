@@ -27,5 +27,6 @@
     .container
       .row
         .col-lg-12
-          = alert
+          - unless alert.nil?
+            .alert.alert-danger.col-xs-6.col-md-offset-3= alert
           = yield

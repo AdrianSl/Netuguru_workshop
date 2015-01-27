@@ -1,4 +1,5 @@
-%p#notice= notice
+- unless notice.nil?
+  .alert.alert-success= notice
 - if user_signed_in?
   -divclass = 'col-xs-6'
 - else
@@ -18,10 +19,11 @@
           = product.title
         %td.text-right
           %span.label.label-success.label-link= link_to 'Show', category_product_path(product.category, product)
+  = link_to 'Back', categories_path, class: 'btn btn-default wide-button'
   - if user_signed_in?
     = link_to 'Edit', edit_category_path(category)
-    \|
-  = link_to 'Back', categories_path, class: 'btn btn-primary'
+
+
 
 .col-xs-6
   %p

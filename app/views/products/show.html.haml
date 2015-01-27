@@ -1,24 +1,29 @@
-%p#notice= notice
-%p#error= flash[:error]
+- unless notice.nil?
+  .alert.alert-success= notice
+- unless flash[:error].nil?
+  .alert.alert-danger
+    %p#error= flash[:error]
 .col-xs-6
-  %p
-    %b Title:
-    = product.title
-  %p
-    %b Description:
-    = product.description
-  %p
-    %b Price:
-    = product.price
+  %h3 Product
+  %dl.dl-horizontal
+    %dt Title:
+    %dd= product.title
+  %dl.dl-horizontal
+    %dt Description:
+    %dd= product.description
+  %dl.dl-horizontal
+    %dt Price:
+    %dd= product.price
 
-  %p
-    %b Category
-    = product.category.name
+  %dl.dl-horizontal
+    %dt Category:
+    %dd= product.category.name
 
+  = link_to 'Back', category_products_path, class: 'btn btn-default wide-button'
   - if user_signed_in? and product.user == current_user
     = link_to 'Edit', edit_category_product_path(category.id, product.id)
-    \|
-  = link_to 'Back', category_products_path, class: 'btn btn-primary'
+
+
 .col-xs-6
   %h3 Reviews
   - if user_signed_in?

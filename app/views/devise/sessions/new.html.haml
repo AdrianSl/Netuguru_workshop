@@ -1,9 +1,12 @@
-%h2 Sign in
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-inputs
-    = f.input :email, required: false, autofocus: true
-    = f.input :password, required: false
-    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-  .form-actions
-    = f.button :submit, "Sign in"
-= render "devise/shared/links"
+.col-xs-6.col-md-offset-3
+  %h2 Sign in
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .form-inputs
+      = f.input :email, required: false, autofocus: true
+      = f.input :password, required: false
+      = f.label :remember_me, class: "checkbox-inline wide-button" do
+        = f.check_box :remember_me
+        %span Remember me on this computer
+    .form-actions
+      = f.button :submit, "Sign in", class: "btn btn-primary wide-button"
+  = render "devise/shared/links"

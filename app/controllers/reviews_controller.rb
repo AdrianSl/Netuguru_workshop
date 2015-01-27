@@ -1,14 +1,11 @@
 class ReviewsController < ApplicationController
-
+  before_action :logged_in_user, only: [:new, :create]
   expose(:review)
   expose(:product)
   expose(:category)
   expose(:products)
- 
-  def new
-  end
 
-  def edit
+  def new
   end
 
   def create
