@@ -1,22 +1,23 @@
 %h1 Listing products
 
-%table
+%table.table.table-striped
   %tr
-    %th Title
-    %th Description
-    %th Price
-    %th
-    %th
-    %th
+    %thead
+      %th Title
+      %th Description
+      %th Price
+      %th
 
-  - products.each do |product|
+
+  - category.products.each do |product|
     %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
-      - if user_signed_in? and product.user == current_user
-        %td= link_to 'Edit', edit_category_product_path(product.category, product)
-        %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+      %td.col-md-2= product.title
+      %td.col-md-6= product.description
+      %td.col-md-1= product.price
+      %td.text-right.col-md-3
+        %span.label.label-success.label-link= link_to 'Show', category_product_path(product.category, product)
+        - if user_signed_in? and product.user == current_user
+          %span.label.label-warning.label-link= link_to 'Edit', edit_category_product_path(product.category, product)
+          %span.label.label-danger.label-link= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

@@ -6,9 +6,11 @@
         - review.errors.full_messages.each do |msg|
           %li= msg
   .form-group
-    = f.label :content
-    = f.text_area :content, class: 'form-control'
+    = f.text_area :content, class: 'form-control', placeholder: 'Compose new review...'
   .form-group
-    = f.input :rating, collection: 1..5, class: 'form-control'
-
+    = f.label 'Rating'
+    - (1..5).each do |i|
+      %label.radio-inline
+        = f.radio_button :rating, i, 
+        = "#{i}"
   = f.submit 'Save', class: 'btn btn-default'

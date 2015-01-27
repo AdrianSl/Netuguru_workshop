@@ -9,18 +9,22 @@
     = javascript_include_tag 'application'
 
   %body
-    %nav.navbar.navbar-default
-      .container-fluid
+    %nav.navbar.navbar-fixed-top.navbar-inverse
+      .container
         .navbar-header
-          %span.navbar-brand #{AppConfig.workshops_name}
-        %p.navbar-text.navbar-right
-          - if user_signed_in?
-            = link_to 'Logout', destroy_user_session_path, method: "delete"
-          - else
-            = link_to 'Sign up', new_user_registration_path
-            = link_to 'Log in', new_user_session_path
+          = link_to AppConfig.workshops_name, root_path, id: "logo"
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              %li
+                = link_to 'Logout', destroy_user_session_path, method: "delete"
+            - else
+              %li
+                = link_to 'Sign up', new_user_registration_path
+              %li
+                = link_to 'Log in', new_user_session_path
 
-    .container-fluid
+    .container
       .row
         .col-lg-12
           = alert

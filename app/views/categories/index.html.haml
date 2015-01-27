@@ -1,22 +1,20 @@
 %h1 Listing categories
 
-%table.table
+%table.table.table-striped
   %tr
-    %th Name
-    %th
-    %th
-    %th
+    %thead
+      %th Name
+      %th.text-right
+        - if user_signed_in? and current_user.admin?
+          %span.label.label-primary.label-link= link_to 'New Category', new_category_path
+
 
   - categories.each do |category|
     %tr
-      %td= category.name
-      %td= link_to 'Show', category
-      - if user_signed_in? and current_user.admin?
-        %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+      %td.col-md-9= category.name
+      %td.text-right.col-md-3
+        %span.label.label-success.label-link= link_to 'Show', category
+        - if user_signed_in? and current_user.admin?
+          %span.label.label-warning.label-link= link_to 'Edit', edit_category_path(category)
+          %span.label.label-danger.label-link= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
 
-
-
-%br
-- if user_signed_in? and current_user.admin?
-  = link_to 'New Category', new_category_path

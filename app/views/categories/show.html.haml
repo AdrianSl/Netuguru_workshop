@@ -1,19 +1,30 @@
 %p#notice= notice
-
-%p
-  %b Name:
-  = category.name
-
-%p
-  - category.products.each do |product|
-    = product.title
-
-%p
-  - if user_signed_in?
-    %h3 New product
-    = render 'products/form'
-
 - if user_signed_in?
-  = link_to 'Edit', edit_category_path(category)
-  \|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+  -divclass = 'col-xs-6'
+- else
+  -divclass = 'col-xs-6 col-md-offset-3'
+%div{:class => divclass}
+  %h3 Name: #{category.name}
+
+  %table.table.table-striped
+    %tr
+      %thead
+        %th Product
+        %th.text-right
+          %span.label.label-primary.label-link= link_to 'All products details', category_products_path(category)
+    - category.products.each do |product|
+      %tr
+        %td
+          = product.title
+        %td.text-right
+          %span.label.label-success.label-link= link_to 'Show', category_product_path(product.category, product)
+  - if user_signed_in?
+    = link_to 'Edit', edit_category_path(category)
+    \|
+  = link_to 'Back', categories_path, class: 'btn btn-primary'
+
+.col-xs-6
+  %p
+    - if user_signed_in?
+      %h3 New product
+      = render 'products/form'

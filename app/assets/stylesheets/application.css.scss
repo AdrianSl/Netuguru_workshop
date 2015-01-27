@@ -1,1 +1,32 @@
 @import "bootstrap";
+
+body {
+  padding-top: 60px;
+}
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  letter-spacing: 2px;
+  padding-top: 9px;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.label-link {
+  font-size: 1em;
+  font-weight: bold;
+  a {
+    color: white;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
