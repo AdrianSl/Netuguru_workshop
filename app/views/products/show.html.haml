@@ -8,14 +8,10 @@
   %dl.dl-horizontal
     %dt Title:
     %dd= product.title
-  %dl.dl-horizontal
     %dt Description:
     %dd= product.description
-  %dl.dl-horizontal
     %dt Price:
     %dd= product.price
-
-  %dl.dl-horizontal
     %dt Category:
     %dd= product.category.name
 
@@ -28,7 +24,7 @@
   %h3 Reviews
   - if user_signed_in?
     = render 'reviews/form'
-
-  = render reviews
+  %ol.reviews
+    = render reviews
 
 

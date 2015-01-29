@@ -1,0 +1,40 @@
+.col-xs-6
+  %h3 User profile
+  .col-xs-3
+    = gravatar_for @user
+  .col-xs-9
+    %dl.dl-horizontal.user-info
+      %dt Firstname:
+      %dd= @user.firstname
+      %dt Lastname:
+      %dd= @user.lastname
+      %dt Email:
+      %dd= @user.email
+      %dt Signed up:
+      %dd
+        = time_ago_in_words(@user.created_at)
+        ago
+      %dt Reviews:
+      %dd= @user.reviews.count
+      %dt Products:
+      %dd= @user.products.count
+
+
+
+
+
+.col-xs-6
+  - if @reviews.any?
+    %h3 Last reviews
+    %ol.reviews
+      -@reviews.each do |review|
+        %li{:id => "reviews-#{review.id}"}
+          %span.timestamp
+            =date_format(review.created_at)
+            posted on
+            = link_to review.product.title, category_product_path(review.product.category, review.product)
+          %span.content-user
+            =review.content
+          %span.rating-user
+            Rating:
+            =review.rating

@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :logged_in_user, only: [:new, :edit, :create, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
-  # before_action :authenticate_user!, only: [:destroy]
+
   expose(:category)
   expose(:products)
   expose(:product)

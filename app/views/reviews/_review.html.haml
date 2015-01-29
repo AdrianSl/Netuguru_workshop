@@ -1,4 +1,11 @@
-%p= review.content
-%p
-  %b= review.rating
-  %em= review.author
+%li{:id => "reviews-#{review.id}"}
+  = link_to gravatar_for(review.user, size: 50), review.user
+  %span.timestamp
+    =date_format(review.created_at)
+    by
+    = link_to review.author , review.user
+  %span.content
+    =review.content
+  %span.rating
+    Rating:
+    =review.rating

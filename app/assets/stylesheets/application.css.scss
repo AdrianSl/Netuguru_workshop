@@ -43,3 +43,47 @@ body {
     margin: 0 0 30px 0;
   }
 }
+
+.user-info {
+  dt {
+    width: 100px;
+  }
+  dd {
+    margin-left: 120px;
+  }
+}
+
+  .reviews {
+    list-style: none;
+    padding: 0;
+    li {
+      padding: 10px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+    .rating {
+      margin-left: 60px;
+      display: block;
+      font-weight: bold;
+    }
+    .rating-user {
+      display: block;
+      font-weight: bold;
+    }
+    .content {
+      display: block;
+      margin-left: 60px;
+    }
+    .content-user {
+      display: block;
+    }
+    .timestamp {
+      color: $gray-light;
+      margin-top: 5em;
+      padding-top: 0;
+    }
+    .gravatar {
+      float: left;
+      margin-right: 10px;
+      margin-top: 5px;
+    }
+  }
